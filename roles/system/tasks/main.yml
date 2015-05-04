@@ -1,0 +1,2 @@
+- name: Paste /etc/motd
+  template: src=motd dest=/etc/motd

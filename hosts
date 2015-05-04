@@ -1,4 +1,3 @@
-cucumber
-rhubarb
-sorrel
-shark
+cucumber  region="New York"
+rhubarb   region="London"
+sorrel    region="Frankfurt"
