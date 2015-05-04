@@ -6,7 +6,10 @@
     <meta name="description" content="{{ ansible_hostname | capitalize }} - landing page" />
     <meta name="author" content="Pavel Dostál" />
     <style>
-      h1 { margin-top: 0px; font-weight: normal; }
+      h1 { margin: 0px; font-weight: normal; }
+      ul { margin: 0px; padding-left: 15px; }
+      footer { margin-top: 2.5px; }
+      a { color: #000; }
     </style>
   </head>
   <body>
@@ -14,9 +17,12 @@
     <ul>
       <li><i>IP v4</i>: <b>{{ ansible_default_ipv4.address }}</b></li>
       <li><i>IP v6</i>: <b>{{ ansible_default_ipv6.address }}</b></li>
-      <li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_release }}</li>
-      <li><i>Kernel</i>: {{ ansible_kernel }} <b>{{ ansible_architecture }}</b></li>
+      {% if ansible_distribution == 'Debian' %}<li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }} {{ ansible_distribution_release }}</li>{% endif %}
+      {% if ansible_distribution == 'FreeBSD' %}<li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_release }} {{ ansible_architecture }}</li>{% endif %}
+      {% if ansible_distribution == 'CentOS' %}<li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }}</li>{% endif %}
+      {% if ansible_distribution == 'Debian' %}<li><i>Kernel</i>: <b>{{ ansible_kernel }}</b></li>{% endif %}
+      {% if ansible_distribution == 'CentOS' %}<li><i>Kernel</i>: <b>{{ ansible_kernel }}</b></li>{% endif %}
     </ul>
-    <footer>&copy; <a itemprop="url" href="mailto:pdostal@pdostal.cz/">Pavel Dostál</a></footer>
+    <footer>Ansible &#8212 2015 &copy; <a itemprop="url" href="mailto:pdostal@pdostal.cz/">Pavel Dostál</a></footer>
   </body>
 </html>
