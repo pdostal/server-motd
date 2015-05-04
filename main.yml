@@ -1,0 +1,4 @@
+- name: pkgs
+  hosts: all
+  sudo: true
+  roles:
