@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ ansible_hostname | capitalize }}</title>
+    <meta name="description" content="{{ ansible_hostname | capitalize }} - landing page" />
+    <meta name="author" content="Pavel Dostál" />
+    <style>
+      h1 { margin-top: 0px; font-weight: normal; }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome on <b>{{ ansible_hostname }}</b> in <b>{{ region }}</b> !</h1>
+    <ul>
+      <li><i>IP v4</i>: <b>{{ ansible_default_ipv4.address }}</b></li>
+      <li><i>IP v6</i>: <b>{{ ansible_default_ipv6.address }}</b></li>
+      <li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_release }}</li>
+      <li><i>Kernel</i>: {{ ansible_kernel }} <b>{{ ansible_architecture }}</b></li>
+    </ul>
+    <footer>&copy; <a itemprop="url" href="mailto:pdostal@pdostal.cz/">Pavel Dostál</a></footer>
+  </body>
+</html>

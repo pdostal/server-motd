@@ -1,1 +1,1 @@
-Welcome on {{ ansible_hostname }} in {{ region }} !
+Welcome on {{ ansible_hostname | capitalize }} in {{ region }} !
