@@ -1,6 +1,6 @@
 - name: install nginx (Debian)
   when: ansible_distribution == 'Debian'
-  apt: pkg=nginx state=present force=yes
+  apt: pkg=nginx-full state=present force=yes
   notify: restart nginx
 - name: install nginx (FreeBSD)
   when: ansible_distribution == 'FreeBSD'
