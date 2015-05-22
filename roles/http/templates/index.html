@@ -13,24 +13,24 @@
     </style>
   </head>
   <body>
-    <h1>Welcome on <b>{{ ansible_hostname }}</b> in <b>{{ region }}</b> !</h1>
+    <h1><b>{{ ansible_hostname }}</b> @ <b>{{ region }}</b> !</h1>
     <ul>
       {% if ansible_distribution == 'Debian' %}
-      <li><i>Dist</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }} {{ ansible_distribution_release }}</li>
-      <li><i>IP v4</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
-      <li><i>IP v6</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
+      <li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }} {{ ansible_distribution_release }}</li>
+      <li><i>IP (4)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
+      <li><i>IP (6)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
       {% endif %}
       {% if ansible_distribution == 'FreeBSD' %}
-      <li><i>Dist</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_release }} {{ ansible_architecture }}</li>
-      <li><i>IP v4</i>: <b>{{ ansible_vtnet0.ipv4[0].address }}</b></li>
-      <li><i>IP v6</i>: <b>{{ ansible_vtnet0.ipv6[1].address }}</b></li>
+      <li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_release }} {{ ansible_architecture }}</li>
+      <li><i>IP (4)</i>: <b>{{ ansible_vtnet0.ipv4[0].address }}</b></li>
+      <li><i>IP (6)</i>: <b>{{ ansible_vtnet0.ipv6[1].address }}</b></li>
       {% endif %}
       {% if ansible_distribution == 'CentOS' %}
-      <li><i>Dist</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }}</li>
-      <li><i>IP v4</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
-      <li><i>IP v6</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
+      <li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }}</li>
+      <li><i>IP (4)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
+      <li><i>IP (6)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
       {% endif %}
-      <li><i>Group</i>: <b>
+      <li><i>Family</i>: <b>
         <b><a href="http://sorrel.pdostal.cz/">sorrel</a></b> &amp;
         <b><a href="http://rhubarb.pdostal.cz/">rhubarb</a></b> &amp;
         <b><a href="http://cucumber.pdostal.cz/">cucumber</a></b>
