@@ -15,11 +15,23 @@
   <body>
     <h1>Welcome on <b>{{ ansible_hostname }}</b> in <b>{{ region }}</b> !</h1>
     <ul>
-      <li><i>IP v4</i>: <b>{{ ansible_default_ipv4.address }}</b></li>
-      <li><i>IP v6</i>: <b>{{ ansible_default_ipv6.address }}</b></li>
+      {% if ansible_distribution == 'Debian' %}
+      <li><i>IP v4</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
+      <li><i>IP v6</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
+      {% endif %}
+      {% if ansible_distribution == 'FreeBSD' %}
+      <li><i>IP v4</i>: <b>{{ ansible_vtnet0.ipv4[0].address }}</b></li>
+      <li><i>IP v6</i>: <b>{{ ansible_vtnet0.ipv6[1].address }}</b></li>
+      {% endif %}
+      {% if ansible_distribution == 'CentOS' %}
+      <li><i>IP v4</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
+      <li><i>IP v6</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
+      {% endif %}
+
       {% if ansible_distribution == 'Debian' %}<li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }} {{ ansible_distribution_release }}</li>{% endif %}
       {% if ansible_distribution == 'FreeBSD' %}<li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_release }} {{ ansible_architecture }}</li>{% endif %}
       {% if ansible_distribution == 'CentOS' %}<li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }}</li>{% endif %}
+
       {% if ansible_distribution == 'Debian' %}<li><i>Kernel</i>: <b>{{ ansible_kernel }}</b></li>{% endif %}
       {% if ansible_distribution == 'CentOS' %}<li><i>Kernel</i>: <b>{{ ansible_kernel }}</b></li>{% endif %}
     </ul>
