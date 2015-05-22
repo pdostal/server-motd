@@ -1,4 +1,1 @@
-Welcome on {{ ansible_hostname | capitalize }} in {{ region }} !
-{% if ansible_distribution == 'Debian' %}There is currently {{ ansible_distribution }} version {{ ansible_distribution_version }} ({{ ansible_distribution_release }}) with {{ ansible_kernel }} kernel.{% endif %}
-{% if ansible_distribution == 'FreeBSD' %}There is currently {{ ansible_distribution }} version {{ ansible_distribution_release }} with {{ ansible_architecture }} kernel.{% endif %}
-{% if ansible_distribution == 'CentOS' %}There is currently {{ ansible_distribution }} version {{ ansible_distribution_version }} with {{ ansible_kernel }} kernel.{% endif %}
+Welcome on {{ ansible_hostname | capitalize }} based on {{ ansible_distribution }} hosted in {{ region }} !
