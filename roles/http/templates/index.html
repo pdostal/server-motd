@@ -8,7 +8,7 @@
     <style>
       h1 { margin: 0px; font-weight: normal; }
       ul { margin: 0px; padding-left: 15px; }
-      footer { margin-top: 3px; }
+      footer { margin-top: 5px; }
       a { color: #000; }
     </style>
   </head>
@@ -16,29 +16,28 @@
     <h1>Welcome on <b>{{ ansible_hostname }}</b> in <b>{{ region }}</b> !</h1>
     <ul>
       {% if ansible_distribution == 'Debian' %}
+      <li><i>Dist</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }} {{ ansible_distribution_release }}</li>
       <li><i>IP v4</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
       <li><i>IP v6</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
-      <li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }} {{ ansible_distribution_release }}</li>
       {% endif %}
       {% if ansible_distribution == 'FreeBSD' %}
+      <li><i>Dist</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_release }} {{ ansible_architecture }}</li>
       <li><i>IP v4</i>: <b>{{ ansible_vtnet0.ipv4[0].address }}</b></li>
       <li><i>IP v6</i>: <b>{{ ansible_vtnet0.ipv6[1].address }}</b></li>
-      <li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_release }} {{ ansible_architecture }}</li>
       {% endif %}
       {% if ansible_distribution == 'CentOS' %}
+      <li><i>Dist</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }}</li>
       <li><i>IP v4</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
       <li><i>IP v6</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
-      <li><i>Distro</i>: <b>{{ ansible_distribution }}</b> {{ ansible_distribution_version }}</li>
       {% endif %}
-
-      <li><i>Family</i>: <b>
-        <a href="http://sorrel.pdostal.cz/">sorrel</a> &amp;
-        <a href="http://rhubarb.pdostal.cz/">rhubarb</a> &amp;
-        <a href="http://cucumber.pdostal.cz/">cucumber</a>
+      <li><i>Group</i>: <b>
+        <b><a href="http://sorrel.pdostal.cz/">sorrel</a></b> &amp;
+        <b><a href="http://rhubarb.pdostal.cz/">rhubarb</a></b> &amp;
+        <b><a href="http://cucumber.pdostal.cz/">cucumber</a></b>
       </b></li>
     </ul>
     <footer>
-      &#8212 2015 &copy; <a itemprop="url" href="mailto:pdostal@pdostal.cz/">Pavel Dostál</a>
+      &copy; <a itemprop="url" href="mailto:pdostal@pdostal.cz/">Pavel Dostál</a>
     </footer>
   </body>
 </html>
