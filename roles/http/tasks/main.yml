@@ -1,44 +1,15 @@
-- name: install nginx (Debian)
-  when: ansible_distribution == 'Debian'
-  apt: pkg=nginx-full state=present force=yes
-  notify: restart nginx
-- name: install nginx (FreeBSD)
+- set_fact:
+    nginx_conf: /usr/local/etc/nginx/
   when: ansible_distribution == 'FreeBSD'
-  pkgng: name=nginx state=present
-  notify: restart nginx
-- name: enable nginx service
-  when: ansible_distribution == 'FreeBSD'
-  lineinfile: dest=/etc/rc.conf regexp=^nginx_enable= line=nginx_enable=YES
-  notify: restart nginx
-- name: install EPEL
-  when: ansible_distribution == 'CentOS'
-  yum: name=epel-release state=latest
-- name: install nginx (CentOS)
-  when: ansible_distribution == 'CentOS'
-  yum: name=nginx state=latest
-  notify: restart nginx
+- set_fact:
+    nginx_conf: /etc/nginx/
+  when: ansible_system == 'Linux'
 
 - name: Create /var/www/
   file: path=/var/www/ state=directory
 - name: Paste index.html
   template: src=index.html dest=/var/www/index.html
 
-- name: Create conf.d directory
-  file: path={{ nginx }}conf.d state=directory
-- name: Create sites-enabled directory
-  file: path={{ nginx }}sites-enabled state=directory
-
-- name: Create log directory
-  file: path=/var/log/nginx state=directory
-- name: Remove olg logs
-  file: path=/var/log/nginx*.log state=absent
-
-- name: Paste nginx config
-  template: src=nginx.conf dest={{ nginx }}nginx.conf
-  notify: reload nginx
 - name: Paste localhost vhost
-  template: src=00_localhost dest={{ nginx }}sites-enabled/00_localhost
+  template: src=00_localhost dest={{ nginx_conf }}sites-enabled/00_localhost
   notify: reload nginx
-
-- name: Remove default vhost
-  file: path={{ nginx }}sites-enabled/default state=absent
