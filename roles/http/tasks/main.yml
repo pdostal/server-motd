@@ -5,11 +5,38 @@
     nginx_conf: /etc/nginx
   when: ansible_system == 'Linux'
 
+- set_fact:
+    apache_conf: /usr/local/etc/apache2
+  when: ansible_distribution == 'FreeBSD'
+- set_fact:
+    apache_conf: /etc/apache2
+  when: ansible_distribution == 'Debian'
+
 - name: Create /var/www/
   file: path=/var/www/ state=directory
 - name: Paste index.html
   template: src=index.html dest=/var/www/index.html
 
-- name: Paste localhost vhost
-  template: src=00_localhost dest={{ nginx_conf }}/sites-enabled/00_localhost
+- stat: path={{ nginx_conf }}/sites-enabled/
+  register: nginx
+- stat: path={{ apache_conf }}/sites-enabled/
+  register: apache
+
+- name: Remove example html files
+  file: path=/var/www/html state=absent
+  notify: reload apache2
+
+- name: Paste localhost vhost (nginx)
+  template: >
+    src=00_localhost.nginx
+    dest={{ nginx_conf }}/sites-enabled/00_localhost.conf
+    mode=775
+  when: nginx.stat.exists
   notify: reload nginx
+- name: Paste localhost vhost (apache)
+  template: >
+    src=00_localhost.apache
+    dest={{ apache_conf }}/sites-enabled/00_localhost.conf
+    mode=775
+  when: apache.stat.exists
+  notify: reload apache
