@@ -14,7 +14,7 @@
     </style>
   </head>
   <body>
-    <h1><b>{{ ansible_hostname }}</b> @ <b>{{ region }}</b> !</h1>
+    <h1><b>{{ ansible_hostname | upper }}</b> @ <b>{{ region }}</b> !</h1>
     <ul>
       {% if ansible_distribution == 'Debian' %}
       <li><i>Distro</i>: <b>{{ ansible_distribution }}</b></li>
