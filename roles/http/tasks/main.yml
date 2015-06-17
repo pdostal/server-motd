@@ -1,8 +1,8 @@
 - set_fact:
-    nginx_conf: /usr/local/etc/nginx/
+    nginx_conf: /usr/local/etc/nginx
   when: ansible_distribution == 'FreeBSD'
 - set_fact:
-    nginx_conf: /etc/nginx/
+    nginx_conf: /etc/nginx
   when: ansible_system == 'Linux'
 
 - name: Create /var/www/
@@ -11,5 +11,5 @@
   template: src=index.html dest=/var/www/index.html
 
 - name: Paste localhost vhost
-  template: src=00_localhost dest={{ nginx_conf }}sites-enabled/00_localhost
+  template: src=00_localhost dest={{ nginx_conf }}/sites-enabled/00_localhost
   notify: reload nginx
