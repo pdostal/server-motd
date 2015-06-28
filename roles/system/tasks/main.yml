@@ -1,2 +1,8 @@
 - name: Paste /etc/motd
   template: src=motd dest=/etc/motd
+- name: Do not update motd
+  when: ansible_distribution == 'FreeBSD'
+  lineinfile: dest=/etc/rc.conf regexp=^update_motd= line=update_motd=no
+- name: Disable freebsd-tips
+  when: ansible_distribution == 'FreeBSD'
+  lineinfile: dest=/etc/rc.conf regexp=^/usr/games/fortune= line='# fortune freebsd-tips'

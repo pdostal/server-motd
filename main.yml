@@ -1,4 +1,4 @@
-- name: pkgs
+- name: motd
   hosts: all
   sudo: true
   roles:
