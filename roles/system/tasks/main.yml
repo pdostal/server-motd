@@ -3,6 +3,12 @@
 - name: Do not update motd
   when: ansible_distribution == 'FreeBSD'
   lineinfile: dest=/etc/rc.conf regexp=^update_motd= line=update_motd=no
-- name: Disable freebsd-tips
+  
+- name: Disable freebsd-tips (~/.login)
   when: ansible_distribution == 'FreeBSD'
-  lineinfile: dest=/etc/rc.conf regexp=^/usr/games/fortune= line='# fortune freebsd-tips'
+  lineinfile: dest=~/.login regexp=/usr/games/fortune line='# fortune freebsd-tips'
+  sudo: no
+- name: Disable freebsd-tips (~/.profile)
+  when: ansible_distribution == 'FreeBSD'
+  lineinfile: dest=~/.profile regexp=/usr/games/fortune line='# fortune freebsd-tips'
+  sudo: no
