@@ -12,3 +12,8 @@
   when: ansible_distribution == 'FreeBSD'
   lineinfile: dest=~/.profile regexp=/usr/games/fortune line='# fortune freebsd-tips'
   sudo: no
+
+- name: Configure periodic
+  when: ansible_distribution == 'FreeBSD'
+  template: src=periodic.conf dest=/etc/periodic.conf
+
