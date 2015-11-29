@@ -7,31 +7,33 @@
     <meta name="author" content="Pavel Dostál" />
     <style>
       h1 { margin: 0px; font-weight: normal; }
-      ul { margin: 0px; padding-left: 15px; }
+      ul { margin: 0px; margin-left: 20px; padding-left: 0px; }
       footer { margin-top: 5px; }
       body { margin-top: 0px; }
+      html { font-family: "Lucida Console", Monaco, monospace; }
       a { color: #000; }
     </style>
   </head>
   <body>
     <h1><b>{{ ansible_hostname | upper }}</b> @ <b>{{ region }}</b> !</h1>
     <ul>
-      {% if ansible_distribution == 'Debian' %}
+{% if ansible_distribution == 'Debian' %}
       <li><i>Distro</i>: <b>{{ ansible_distribution }}</b></li>
       <li><i>IP (4)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
       <li><i>IP (6)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
-      {% endif %}
-      {% if ansible_distribution == 'FreeBSD' %}
+{% endif %}
+{% if ansible_distribution == 'FreeBSD' %}
       <li><i>Distro</i>: <b>{{ ansible_distribution }}</b></li>
       <li><i>IP (4)</i>: <b>{{ ansible_vtnet0.ipv4[0].address }}</b></li>
       <li><i>IP (6)</i>: <b>{{ ansible_vtnet0.ipv6[1].address }}</b></li>
-      {% endif %}
-      {% if ansible_distribution == 'CentOS' %}
+{% endif %}
+{% if ansible_distribution == 'CentOS' %}
       <li><i>Distro</i>: <b>{{ ansible_distribution }}</b></li>
       <li><i>IP (4)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
       <li><i>IP (6)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
-      {% endif %}
+{% endif %}
       <li><i>Family</i>: <b>
+        <b><a href="http://grape.pdostal.cz/">grape</a></b> &amp;
         <b><a href="http://sorrel.pdostal.cz/">sorrel</a></b> &amp;
         <b><a href="http://rhubarb.pdostal.cz/">rhubarb</a></b> &amp;
         <b><a href="http://cucumber.pdostal.cz/">cucumber</a></b>
