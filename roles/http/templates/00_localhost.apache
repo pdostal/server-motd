@@ -1,7 +1,7 @@
 <VirtualHost *:80>
   DocumentRoot /var/www
   ServerName {{ ansible_hostname }}.pdostal.cz
-  ServerAlias 127.0.0.1 localhost {{ ansible_hostname }}.pdostal.cz
+  ServerAlias 127.0.0.1 localhost {{ ansible_all_ipv4_addresses|join(" ") }} [{{ ansible_all_ipv6_addresses|join("] [") }}] {{ ansible_hostname }}.pdostal.cz
   <Directory /var/www/>
     Options -Indexes +FollowSymLinks +MultiViews
     AllowOverride All
