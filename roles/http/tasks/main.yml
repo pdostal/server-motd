@@ -24,7 +24,7 @@
 
 - name: Remove example html files
   file: path=/var/www/html state=absent
-  notify: reload apache2
+  notify: reload apache
 
 - name: Paste localhost vhost (nginx)
   template: >
