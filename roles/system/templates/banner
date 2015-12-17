@@ -1,2 +1,2 @@
 Welcome on {{ ansible_hostname }} based on {{ ansible_distribution }} hosted in {{ region }} !
-* Owner & maintainer: Pavel Dostal <sshbanner@pdostal.cz> (https://pdostal.cz/)
+* Owner & maintainer: Pavel Dostal <sshbanner@pdostal.cz>
