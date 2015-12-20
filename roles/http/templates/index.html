@@ -2,42 +2,46 @@
 <html lang="cs">
   <head>
     <meta charset="utf-8">
-    <title>{{ ansible_hostname | capitalize }}</title>
-    <meta name="description" content="{{ ansible_hostname | capitalize }} - landing page" />
+    <title>{{ ansible_hostname }}</title>
+    <meta name="description" content="{{ ansible_hostname}} server page" />
     <meta name="author" content="Pavel Dostál" />
     <style>
-      h1 { margin: 0px; font-weight: normal; }
+      h1 { margin: 0px; font-weight: normal; font-size: 150%; }
       ul { margin: 0px; margin-left: 20px; padding-left: 0px; }
-      footer { margin-top: 5px; }
+      footer { margin-top: 10px; }
       body { margin-top: 0px; }
       html { font-family: "Lucida Console", Monaco, monospace; }
-      a { color: #000; }
+      a { color: #000; text-decoration: none; }
     </style>
   </head>
   <body>
-    <h1><b>{{ ansible_hostname | upper }}</b> @ <b>{{ region }}</b> !</h1>
+    <h1><b>{{ ansible_hostname | upper }}</b> in <b>{{ region }}</b> !</h1>
     <ul>
 {% if ansible_distribution == 'Debian' %}
       <li><i>Distro</i>: <b>{{ ansible_distribution }}</b></li>
-      <li><i>IP (4)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
-      <li><i>IP (6)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
+      <li><i>IP (<a href="http://{{ ansible_eth0.ipv4.address }}/">4</a>)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
+      <li><i>IP (<a href="http://[{{ ansible_eth0.ipv6[0].address }}]/">6</a>)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
 {% endif %}
 {% if ansible_distribution == 'FreeBSD' %}
       <li><i>Distro</i>: <b>{{ ansible_distribution }}</b></li>
-      <li><i>IP (4)</i>: <b>{{ ansible_vtnet0.ipv4[0].address }}</b></li>
-      <li><i>IP (6)</i>: <b>{{ ansible_vtnet0.ipv6[1].address }}</b></li>
+      <li><i>IP (<a href="http://{{ ansible_vtnet0.ipv4[0].address }}/">4</a>)</i>: <b>{{ ansible_vtnet0.ipv4[0].address }}</b></li>
+      <li><i>IP (<a href="http://[{{ ansible_vtnet0.ipv6[1].address }}]/">6</a>)</i>: <b>{{ ansible_vtnet0.ipv6[1].address }}</b></li>
 {% endif %}
 {% if ansible_distribution == 'CentOS' %}
       <li><i>Distro</i>: <b>{{ ansible_distribution }}</b></li>
-      <li><i>IP (4)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
-      <li><i>IP (6)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
+      <li><i>IP (<a href="http://{{ ansible_eth0.ipv4.address }}/">4</a>)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
+      <li><i>IP (<a href="http://[{{ ansible_eth0.ipv6[0].address }}]/">6</a>)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
 {% endif %}
-      <li><i>Family</i>: <b>
-        <b><a href="http://grape.pdostal.cz/">grape</a></b> &amp;
-        <b><a href="http://sorrel.pdostal.cz/">sorrel</a></b> &amp;
-        <b><a href="http://rhubarb.pdostal.cz/">rhubarb</a></b> &amp;
-        <b><a href="http://cucumber.pdostal.cz/">cucumber</a></b>
-      </b></li>
+      <li><i>Family</i>: </li>
+      <ul>
+{% for item in groups.all %}
+{% if hostvars[item].ansible_hostname == ansible_hostname %}
+        <li type="disc"><b><a href="http://{{ hostvars[item].ansible_hostname }}.pdostal.cz/">{{ hostvars[item].ansible_hostname }}</a></b> in {{ hostvars[item].region }}</li>
+{% else %}
+        <li type="circle"><b><a href="http://{{ hostvars[item].ansible_hostname }}.pdostal.cz/">{{ hostvars[item].ansible_hostname }}</a></b> in {{ hostvars[item].region }}</li>
+{% endif %}
+{% endfor %}
+      </ul>
     </ul>
     <footer>
       &copy; <a itemprop="url" href="mailto:pdostal@pdostal.cz/">Pavel Dostál</a>
