@@ -3,3 +3,18 @@ rhubarb  region="London"
 sorrel  region="Frankfurt"
 grape  region="New York"
 peas  region="Prague"
+
+[system]
+cucumber
+rhubarb
+sorrel
+grape
+peas
+
+[http]
+cucumber
+rhubabr
+sorrel
+grape
+peas
+

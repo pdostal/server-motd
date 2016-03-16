@@ -1,6 +1,12 @@
-- name: motd
-  hosts: all
+- name: SYSTEM MOTD
+  hosts: system
   sudo: true
   roles:
   - system
+
+- name: HTTP motd
+  hosts: http
+  sudo: true
+  roles:
   - http
+
