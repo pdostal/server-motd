@@ -2,17 +2,18 @@
   template: src=banner dest=/etc/banner
 - name: Paste motd
   template: src=motd dest=/etc/motd
+
 - name: Do not update motd
   when: ansible_distribution == 'FreeBSD'
   lineinfile: dest=/etc/rc.conf regexp=^update_motd= line=update_motd=no
 
 - name: Disable freebsd-tips (~/.login)
   when: ansible_distribution == 'FreeBSD'
-  lineinfile: dest=~/.login regexp=/usr/games/fortune line='# fortune freebsd-tips'
+  lineinfile: dest=~/.login regexp='fortune freebsd-tips' line='# fortune freebsd-tips'
   sudo: no
 - name: Disable freebsd-tips (~/.profile)
   when: ansible_distribution == 'FreeBSD'
-  lineinfile: dest=~/.profile regexp=/usr/games/fortune line='# fortune freebsd-tips'
+  lineinfile: dest=~/.profile regexp='fortune freebsd-tips' line='# fortune freebsd-tips'
   sudo: no
 
 - name: Configure periodic

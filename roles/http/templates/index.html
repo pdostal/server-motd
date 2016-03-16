@@ -34,11 +34,11 @@
 {% endif %}
       <li><i>Family</i>: </li>
       <ul>
-{% for item in groups.all %}
-{% if hostvars[item].ansible_hostname == ansible_hostname %}
-        <li type="disc"><b><a href="http://{{ hostvars[item].ansible_hostname }}.pdostal.cz/">{{ hostvars[item].ansible_hostname }}</a></b> in {{ hostvars[item].region }}</li>
+{% for item in groups.http %}
+{% if hostvars[item]['ansible_hostname'] == ansible_hostname %}
+        <li type="disc"><b><a href="http://{{ hostvars[item]['ansible_hostname'] }}.pdostal.cz/">{{ hostvars[item]['ansible_hostname'] }}</a></b> in {{ hostvars[item].region }}</li>
 {% else %}
-        <li type="circle"><b><a href="http://{{ hostvars[item].ansible_hostname }}.pdostal.cz/">{{ hostvars[item].ansible_hostname }}</a></b> in {{ hostvars[item].region }}</li>
+        <li type="circle"><b><a href="http://{{ hostvars[item].ansible_hostname }}.pdostal.cz/">{{ hostvars[item]['ansible_hostname'] }}</a></b> in {{ hostvars[item].region }}</li>
 {% endif %}
 {% endfor %}
       </ul>
@@ -48,3 +48,4 @@
     </footer>
   </body>
 </html>
+
