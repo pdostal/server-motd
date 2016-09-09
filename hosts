@@ -1,24 +1,16 @@
 cucumber  region="Frankfurt"
-rhubarb  region="London"
 sorrel  region="Frankfurt"
 grape  region="New York"
 peas  region="Prague"
-rpi  region="Trabzon"
-pi  region="Trabzon"
 
 [system]
 cucumber
-rhubarb
 sorrel
 grape
 peas
-rpi
-pi
 
 [http]
 cucumber
-rhubarb
 sorrel
 grape
 peas
-

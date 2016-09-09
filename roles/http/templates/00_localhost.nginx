@@ -1,7 +1,7 @@
 server {
   listen 80;
   listen [::]:80;
-  server_name 127.0.0.1 localhost {{ ansible_all_ipv4_addresses|join(" ") }} [{{ ansible_all_ipv6_addresses|join("] [") }}] {{ ansible_hostname }}.pdostal.cz;
+  server_name 127.0.0.1 localhost {{ ansible_all_ipv4_addresses|join(" ") }} [{{ ansible_all_ipv6_addresses|join("] [") }}] {{ ansible_hostname }} {{ ansible_hostname }}.pdostal.cz;
 
   root /var/www;
   index index.html;

@@ -32,20 +32,9 @@
       <li><i>IP (<a href="http://{{ ansible_eth0.ipv4.address }}/">4</a>)</i>: <b>{{ ansible_eth0.ipv4.address }}</b></li>
       <li><i>IP (<a href="http://[{{ ansible_eth0.ipv6[0].address }}]/">6</a>)</i>: <b>{{ ansible_eth0.ipv6[0].address }}</b></li>
 {% endif %}
-      <li><i>Family</i>: </li>
-      <ul>
-{% for item in groups.http %}
-{% if hostvars[item]['ansible_hostname'] == ansible_hostname %}
-        <li type="disc"><b><a href="http://{{ hostvars[item]['ansible_hostname'] }}.pdostal.cz/">{{ hostvars[item]['ansible_hostname'] }}</a></b> in {{ hostvars[item].region }}</li>
-{% else %}
-        <li type="circle"><b><a href="http://{{ hostvars[item].ansible_hostname }}.pdostal.cz/">{{ hostvars[item]['ansible_hostname'] }}</a></b> in {{ hostvars[item].region }}</li>
-{% endif %}
-{% endfor %}
-      </ul>
     </ul>
     <footer>
       &copy; <a itemprop="url" href="mailto:pdostal@pdostal.cz/">Pavel Dostál</a>
     </footer>
   </body>
 </html>
-
