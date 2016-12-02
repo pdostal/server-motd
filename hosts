@@ -1,16 +1,19 @@
 cucumber  region="Frankfurt"
+coconut  region="Amsterdam"
 sorrel  region="Frankfurt"
 grape  region="New York"
 peas  region="Prague"
 
 [system]
 cucumber
+coconut
 sorrel
 grape
 peas
 
 [http]
 cucumber
+coconut
 sorrel
 grape
 peas
