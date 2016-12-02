@@ -17,14 +17,17 @@
 - name: Paste index.html
   template: src=index.html dest=/var/www/index.html
 
-- stat: path={{ nginx_conf }}/sites-enabled/
+- stat: path={{ nginx_conf }}
   register: nginx
-- stat: path={{ apache_conf }}/sites-enabled/
+- stat: path={{ apache_conf }}
   register: apache
 
 - name: Remove example html files
   file: path=/var/www/html state=absent
 
+- name: Create vhosts direcotyr (nginx)
+  file: path={{ nginx_conf }}/sites-enabled/ state=directory
+  when: nginx.stat.exists
 - name: Paste localhost vhost (nginx)
   template: >
     src=00_localhost.nginx
