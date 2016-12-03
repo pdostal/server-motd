@@ -1,3 +1,4 @@
+habanero  region="Frankfurt"
 cucumber  region="Frankfurt"
 coconut  region="Amsterdam"
 sorrel  region="Frankfurt"
@@ -5,6 +6,7 @@ grape  region="New York"
 peas  region="Prague"
 
 [system]
+habanero
 cucumber
 coconut
 sorrel
@@ -12,6 +14,7 @@ grape
 peas
 
 [http]
+habanero
 cucumber
 coconut
 sorrel
